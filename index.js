@@ -22,6 +22,26 @@ const client = new MongoClient(uri, {
   }
 });
 
+// Jwt token verified
+
+const jwtVerify = (req, res, next) => {
+  const authHeader = req?.headers.authorization
+  if(!authHeader){
+    return res.status(401).json({message:"Unauthorized"});
+  }
+ 
+  const token=authHeader.split(" ")[1]
+  if (!token) {
+    return res.status(401).json({message:"Unauthorized"});
+  }
+
+  console.log(token);
+  
+  next();
+
+}
+
+
 async function run() {
 
   try {
@@ -53,7 +73,6 @@ async function run() {
         return res.status(404).json({ message: "Comment not found" });
       }
 
-      // ❌ not owner
       if (comment.userEmail !== email) {
         return res.status(403).json({ message: "Not allowed" });
       }
@@ -145,8 +164,7 @@ async function run() {
 
 
     // get single idea
-    app.get('/ideas/:id',
-    async (req, res) => {
+    app.get('/ideas/:id',jwtVerify,async (req, res) => {
 
       const { id } = req.params;
 
