@@ -125,7 +125,7 @@ async function run() {
 
       res.json(result);
     });
-    // update
+    // update my comment
 
     app.put("/comment/:id", async (req, res) => {
       const { id } = req.params;
@@ -176,7 +176,6 @@ async function run() {
     });
 
 
-
     // get single idea
     app.get('/ideas/:id',tokenVerify,async (req, res) => {
 
@@ -188,7 +187,6 @@ async function run() {
 
       res.json(result);
     });
-
 
 
     // add idea
@@ -204,7 +202,6 @@ async function run() {
     });
 
 
-
     // get my ideas
     app.get('/my-ideas', async (req, res) => {
 
@@ -218,8 +215,6 @@ async function run() {
 
       res.json(result);
     });
-
-
 
     // delete idea
     app.delete('/ideas/:id',async (req, res) => {
