@@ -145,7 +145,8 @@ async function run() {
 
 
     // get single idea
-    app.get('/ideas/:id', async (req, res) => {
+    app.get('/ideas/:id',
+    async (req, res) => {
 
       const { id } = req.params;
 
@@ -189,7 +190,7 @@ async function run() {
 
 
     // delete idea
-    app.delete('/ideas/:id', async (req, res) => {
+    app.delete('/ideas/:id',async (req, res) => {
 
       const { id } = req.params;
 
