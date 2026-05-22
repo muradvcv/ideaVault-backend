@@ -75,7 +75,7 @@ async function run() {
     })
 
     // dleete
-    app.delete("/comment/:id", async (req, res) => {
+    app.delete("/comment/:id",tokenVerify, async (req, res) => {
       const { id } = req.params;
       const { email } = req.body;
 
@@ -127,7 +127,7 @@ async function run() {
     });
     // update my comment
 
-    app.put("/comment/:id", async (req, res) => {
+    app.put("/comment/:id",tokenVerify, async (req, res) => {
       const { id } = req.params;
       const { email, comment } = req.body;
 
@@ -156,7 +156,7 @@ async function run() {
     });
 
     // add comment on server
-    app.post('/comment', async (req, res) => {
+    app.post('/comment',tokenVerify, async (req, res) => {
       const commentData = req.body
       const result = await commentCollection.insertOne(commentData)
 
@@ -190,7 +190,7 @@ async function run() {
 
 
     // add idea
-    app.post('/idea', async (req, res) => {
+    app.post('/idea',tokenVerify, async (req, res) => {
 
       const ideaData = req.body;
 
@@ -203,7 +203,7 @@ async function run() {
 
 
     // get my ideas
-    app.get('/my-ideas', async (req, res) => {
+    app.get('/my-ideas',tokenVerify, async (req, res) => {
 
       const email = req.query.email;
 
@@ -217,7 +217,7 @@ async function run() {
     });
 
     // delete idea
-    app.delete('/ideas/:id',async (req, res) => {
+    app.delete('/ideas/:id',tokenVerify,async (req, res) => {
 
       const { id } = req.params;
 
@@ -233,7 +233,7 @@ async function run() {
 
 
     // update idea
-    app.put('/ideas/:id', async (req, res) => {
+    app.put('/ideas/:id',tokenVerify, async (req, res) => {
 
       const { id } = req.params;
 
