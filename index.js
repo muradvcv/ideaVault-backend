@@ -26,7 +26,7 @@ const client = new MongoClient(uri, {
 // Jwt token verified
 
 const jwks = createRemoteJWKSet(
-  new URL("http://localhost:3000/api/auth/jwks")
+  new URL(`${process.env.CLIENT_URL}/api/auth/jwks`)
 );
 
 const tokenVerify = async (req, res, next) => {
@@ -60,7 +60,8 @@ async function run() {
 
   try {
 
-    await client.connect();
+    // await client.connect();
+
     const db = client.db("ideaVault");
     const ideaCollection = db.collection("ideas");
     const commentCollection = db.collection("comments")
@@ -258,7 +259,7 @@ async function run() {
 
 
 
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
 
     console.log("MongoDB Connected Successfully");
 
